@@ -25,9 +25,13 @@ exports.getList = (req, res, next) => {
   offset = (offset - 1) * pageSize
   let where = {}
   let dict_name = value.dict_name
+  let dict_code = value.dict_code
   let status = value.status
   if (dict_name) {
     where.dict_name = { [Op.like]: `%${dict_name}%` }
+  }
+  if (dict_code) {
+    where.dict_code = { [Op.eq]: dict_code }
   }
   if (status) {
     where.status = { [Op.eq]: status }
